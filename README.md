@@ -1,57 +1,43 @@
-# Auto Config Skills
+[English](README.md) | [简体中文](README_zh-CN.md)
 
-这是一个自动化管理和安装 AI Agent Skills (Markdown 指令) 的命令行工具。
+# Auto Install Skills
 
-## 🎯 项目目标
+**One command to equip your Agents with new skills.**
 
-简化将 GitHub 上的通用 Agent Skills (如 `anthropics/skills`) 安装到本地 AI 辅助工具 (如 Antigravity, Claude Code) 的过程。
+This tool finds AI Agents on your computer (Antigravity, Claude Code, Windsurf, Gemini CLI) and installs Markdown-based skills (`SKILL.md`) from GitHub repositories directly into them.
 
-**核心定位**: 本工具专注于管理 **Instructional Skills** (基于 Markdown 的指令文件)，不涉及 MCP Server 的复杂环境配置。
+## 🚀 Usage
 
-## 🛠 运行原理
+Build and run:
+```bash
+npx auto-install-skills install
+```
 
-本工具基于 Node.js 开发，主要包含三个核心模块：
+Just follow the interactive prompts:
+1.  **Select Agent**: Choose where to install (e.g., Antigravity).
+2.  **Select Source**: Choose a preset repo (like `anthropics/skills`) or paste a URL.
+3.  **Select Skills**: Pick the skills you want.
 
-### 1. 自动扫描 (Scanner)
-*   **原理**: 探测本地文件系统中的特定目录，识别已安装的 AI Agent。
-*   **逻辑**: 检查默认的标准路径 (例如 `~/.gemini/antigravity/skills`)。如果不存则认为该软件未安装或未配置。
+That's it!
 
-### 2. 资源获取 (Fetcher)
-*   **原理**: 充当 GitHub 仓库的“搬运工”。
-*   **逻辑**:
-    1.  接收用户输入的 GitHub 仓库 URL (如 `https://github.com/anthropics/skills`).
-    2.  将仓库完整 Clone 到系统的临时目录 (`/tmp/auto-config-skills-cache/...`)。
-    3.  扫描临时目录，寻找包含 `SKILL.md` 的子文件夹，将其识别为有效 Skill。
+## 📦 Features
 
-### 3. 安装分发 (Installer)
-*   **原理**: 纯粹的文件系统操作。
-*   **逻辑**: 将用户选中的 Skill 文件夹从临时目录 `copy` 到目标 Agent 的 Skills 目录。
+*   **Auto-Detect**: Finds your agents automatically.
+*   **One-Click**: No manual downloading or copying files.
+*   **Smart**: Handles nested folders and conflicts (Overwrite/Skip).
 
-## 🚀 技术栈
+## 🛠 Supported Agents
 
-*   **Runtime**: Node.js (TypeScript)
-*   **CLI**: `commander` (命令管理), `inquirer` (交互式 UI)
-*   **Core**: `simple-git` (Git 操作), `fs-extra` (文件操作)
+*   **Antigravity**
+*   **Claude Code**
+*   **Windsurf**
+*   **Gemini CLI**
 
-## 📦 使用方法
+## Build Locally
 
-### 1. 安装依赖 & 编译
 ```bash
 npm install
-npx tsc
+npm run build
 ```
 
-### 2. 运行工具
-```bash
-# 交互式安装模式
-node dist/index.js install
-
-# 仅扫描查看
-node dist/index.js scan
-```
-
-### 3. 操作流程
-1.  工具会自动列出检测到的 AI 软件 (如 `Antigravity`).
-2.  输入包含 Skills 的 GitHub 仓库地址.
-3.  通过空格键选择要安装的 Skills.
-4.  回车确认，工具自动完成复制.
+License: ISC

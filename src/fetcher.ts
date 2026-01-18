@@ -16,10 +16,12 @@ export async function fetchRepo(repoUrl: string): Promise<string> {
   }
 
   await fs.ensureDir(targetDir);
-  const git = simpleGit();
+  const git = simpleGit().outputHandler((command, stdout, stderr) => {
+    stderr.pipe(process.stderr);
+  });
   
   try {
-    await git.clone(repoUrl, targetDir);
+    await git.clone(repoUrl, targetDir, ['--progress']); // Ensure progress flag is sent
     return targetDir;
   } catch (e) {
     throw new Error(`Failed to clone repository: ${e}`);

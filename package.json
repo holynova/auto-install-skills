@@ -1,13 +1,22 @@
 {
-  "name": "auto-config-skills",
+  "name": "auto-install-skills",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "bin": {
+    "auto-install-skills": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README_zh-CN.md"
+  ],
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js --format=cjs --banner:js=\"#!/usr/bin/env node\"",
     "start": "node dist/index.js",
     "scan": "npm run build && node dist/index.js scan",
     "install-skills": "npm run build && node dist/index.js install",
@@ -32,5 +41,8 @@
     "simple-git": "^3.30.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.2"
   }
 }
