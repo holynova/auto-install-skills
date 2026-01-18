@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "bin": {
-    "auto-install-skills": "./dist/index.js"
+    "auto-install-skills": "dist/index.js"
   },
   "files": [
     "dist",
