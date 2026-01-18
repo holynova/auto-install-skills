@@ -1,0 +1,36 @@
+{
+  "name": "auto-config-skills",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "scan": "npm run build && node dist/index.js scan",
+    "install-skills": "npm run build && node dist/index.js install",
+    "dev:scan": "ts-node src/index.ts scan",
+    "dev:install": "ts-node src/index.ts install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@inquirer/prompts": "^8.2.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^25.0.9",
+    "chalk": "^4.1.2",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "fs-extra": "^11.3.3",
+    "inquirer": "^13.2.0",
+    "ora": "^9.0.0",
+    "simple-git": "^3.30.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
